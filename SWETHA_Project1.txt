@@ -1,0 +1,284 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Swetha_Project_1
+{
+    class Swetha_Project_1
+    {
+        static void inputArray(int[] a, int n)
+        {
+            int l = a.Length;
+            int q = l - n;
+
+            for (int i = 0; i < l; i++)
+            {
+                a[i] = 0;
+            }
+            a[q] = 1;
+        }
+
+        static void displayArray(int[] a, int n)
+        {
+            Console.WriteLine();
+            int l = a.Length;
+            int count = 0;
+            for (int i = 0; i < l; i++)
+            {
+                Console.Write(a[i]);
+                count++;
+                if (count % n == 0)
+                    Console.WriteLine();
+            }
+        }
+
+        static int upSide(int[] a, int n, int d, int f, out int c)
+        {
+            int l = a.Length;
+
+            int u = 0;
+            Console.WriteLine(f);
+            if (d == 0)
+            {
+                int q = l - n;
+
+                if (l >= 0 && l <= n - 1)
+                {
+                    Console.WriteLine("You can not go up side");
+                }
+                else
+                {
+                    a[q] = 0;
+                    a[q - n] = 1;
+                    u = q - n;
+                    d++;
+                    Console.WriteLine(u);
+                }
+            }
+            else
+            {
+                if (l >= 0 && l <= n - 1)
+                {
+                    Console.WriteLine("You can not go up side");
+                }
+                else
+                {
+                    a[f] = 0;
+                    a[f - n] = 1;
+                    u = f - n;
+                    d++;
+                }
+            }
+
+            c = u;
+
+            return d;
+        }
+
+        static int downSide(int[] a, int n, int d, int f, out int c)
+        {
+            Console.WriteLine("hi");
+            int l = a.Length;
+            int u = 0;
+            int g = l;
+            Console.WriteLine(f);
+            if (d == 0)
+            {
+                int q = l - n;
+
+                if (f >= g - n && f <= l)
+                {
+                    Console.WriteLine("You can not go down side");
+                }
+                else
+                {
+                    a[q] = 0;
+                    a[q + n] = 1;
+                    u = q + n;
+                    d++;
+
+                }
+            }
+            else
+            {
+                Console.WriteLine(f);
+                if (f >= g - n && f <= l)
+                {
+                    Console.WriteLine("You can not go down side");
+                }
+                else
+                {
+                    Console.WriteLine("Hello");
+                    a[f] = 0;
+                    a[f + n] = 1;
+                    u = f + n;
+                    d++;
+                }
+            }
+
+            c = u;
+
+            return d;
+        }
+
+        static int rigthSide(int[] a, int n, int d, int f, out int c)
+        {
+            int l = a.Length;
+            int u = 0;
+            int g = l;
+            Console.WriteLine(f);
+            if (d == 0)
+            {
+                int q = l - n;
+
+                if (f >= g - n && f <= l)
+                {
+                    Console.WriteLine("You can not go right side");
+                }
+                else
+                {
+                    a[q] = 0;
+                    a[q + 1] = 1;
+                    u = q + 1;
+                    d++;
+
+                }
+            }
+            else
+            {
+                Console.WriteLine(f);
+                if (f >= g - n && f <= l)
+                {
+                    Console.WriteLine("You can not go right side");
+                }
+                else
+                {
+
+                    a[f] = 0;
+                    a[f + 1] = 1;
+                    u = f + 1;
+                    d++;
+                }
+            }
+
+            c = u;
+
+            return d;
+        }
+
+        static int leftSide(int[] a, int n, int d, int f, out int c)
+        {
+            int l = a.Length;
+            int u = 0;
+            int g = l;
+            Console.WriteLine(f);
+            if (d == 0)
+            {
+                int q = l - n;
+
+                if (f >= g - n && f <= l)
+                {
+                    Console.WriteLine("You can not go right side");
+                }
+                else
+                {
+                    a[q] = 0;
+                    a[q - 1] = 1;
+                    u = q - 1;
+                    d++;
+
+                }
+            }
+            else
+            {
+                Console.WriteLine(f);
+                if (f >= g - n && f <= l)
+                {
+                    Console.WriteLine("You can not go left side");
+                }
+                else
+                {
+
+                    a[f] = 0;
+                    a[f - 1] = 1;
+                    u = f - 1;
+                    d++;
+                }
+            }
+
+            c = u;
+
+            return d;
+        }
+
+        static void Main(string[] args)
+        {
+            int n;
+            Console.WriteLine("Enter number of elements");
+            n = Convert.ToInt32(Console.ReadLine());
+
+
+
+            int q = n * n;
+
+            int[] a = new int[q];
+
+            inputArray(a, n);
+            displayArray(a, n);
+
+
+
+            int b = 0;
+            int c = 0;
+            int d = 0;
+            int e = 0;
+            int f = 0;
+            do
+            {
+
+                Console.WriteLine("Enter your option \n2.UP \n4.DOWN \n6.LEFT \n8.Right \n10.EXIT");
+                b = Convert.ToInt32(Console.ReadLine());
+                if (b == 2)
+                {
+                    Console.WriteLine("UP");
+                    f = c;
+                    d = Convert.ToInt32(upSide(a, n, d, f, out c));
+                    //Console.WriteLine(c);
+                    displayArray(a, n);
+                }
+                else if (b == 4)
+                {
+                    Console.WriteLine("DOWN");
+                    f = c;
+                    d = Convert.ToInt32(downSide(a, n, d, f, out c));
+                    displayArray(a, n);
+                }
+                else if (b == 6)
+                {
+                    Console.WriteLine("LEFT");
+                    f = c;
+                    d = Convert.ToInt32(leftSide(a, n, d, f, out c));
+                    displayArray(a, n);
+                }
+                else if (b == 8)
+                {
+                    Console.WriteLine("Right");
+                    f = c;
+                    d = Convert.ToInt32(rigthSide(a, n, d, f, out c));
+                    displayArray(a, n);
+                }
+                else if (b == 10)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Put a Valid Option");
+                }
+            } while (b != 0);
+            Console.Read();
+        }
+    }
+}
